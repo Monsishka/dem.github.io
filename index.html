@@ -1,324 +1,72 @@
 <!DOCTYPE html>
-<html lang="ru">
+<html>
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Моя презентация</title>
-    <style>
-        :root {
-            --primary: #4361ee;
-            --secondary: #3f37c9;
-            --accent: #4895ef;
-            --light: #f8f9fa;
-            --dark: #212529;
-            --success: #4cc9f0;
-            --warning: #f72585;
-            --shadow: 0 4px 6px rgba(0,0,0,0.1);
-            --radius: 12px;
-        }
-        
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: var(--dark);
-            line-height: 1.6;
-            padding: 20px;
-            min-height: 100vh;
-        }
-        
-        .container {
-            max-width: 900px;
-            margin: 0 auto;
-        }
-        
-        header {
-            text-align: center;
-            padding: 30px 20px;
-            background: white;
-            border-radius: var(--radius);
-            box-shadow: var(--shadow);
-            margin-bottom: 25px;
-        }
-        
-        header h1 {
-            color: var(--primary);
-            font-size: 2rem;
-            margin-bottom: 10px;
-        }
-        
-        .card {
-            background: white;
-            border-radius: var(--radius);
-            padding: 25px;
-            margin-bottom: 20px;
-            box-shadow: var(--shadow);
-            transition: transform 0.2s, box-shadow 0.2s;
-        }
-        
-        .card:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
-        }
-        
-        .card-title {
-            color: var(--secondary);
-            font-size: 1.3rem;
-            margin-bottom: 15px;
-            padding-bottom: 10px;
-            border-bottom: 2px solid var(--accent);
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-        
-        .date-badge {
-            background: var(--primary);
-            color: white;
-            padding: 4px 12px;
-            border-radius: 20px;
-            font-size: 0.85rem;
-            font-weight: 500;
-            display: inline-block;
-            margin-bottom: 12px;
-        }
-        
-        .download-links {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 12px;
-            margin-top: 15px;
-        }
-        
-        .btn {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            padding: 12px 24px;
-            background: var(--primary);
-            color: white;
-            text-decoration: none;
-            border-radius: 8px;
-            font-weight: 500;
-            transition: all 0.3s;
-            border: none;
-            cursor: pointer;
-        }
-        
-        .btn:hover {
-            background: var(--secondary);
-            transform: translateY(-2px);
-            box-shadow: 0 4px 12px rgba(67, 97, 238, 0.4);
-        }
-        
-        .btn-outline {
-            background: transparent;
-            border: 2px solid var(--primary);
-            color: var(--primary);
-        }
-        
-        .btn-outline:hover {
-            background: var(--primary);
-            color: white;
-        }
-        
-        .prediction-item {
-            display: flex;
-            justify-content: space-between;
-            padding: 8px 0;
-            border-bottom: 1px dashed #eee;
-        }
-        
-        .prediction-item:last-child { border-bottom: none; }
-        
-        .prediction-label { font-weight: 500; }
-        .prediction-value { 
-            color: var(--success); 
-            font-weight: 600; 
-            font-family: monospace;
-        }
-        
-        .faq-answer {
-            background: var(--light);
-            padding: 15px;
-            border-radius: 8px;
-            border-left: 4px solid var(--accent);
-            margin: 10px 0;
-        }
-        
-        .similarity {
-            color: #666;
-            font-size: 0.9rem;
-            font-style: italic;
-        }
-        
-        .quote {
-            font-style: italic;
-            color: #555;
-            padding: 20px;
-            background: linear-gradient(135deg, #f5f7fa 0%, #e4e8ec 100%);
-            border-radius: 8px;
-            border-left: 4px solid var(--warning);
-            margin: 15px 0;
-        }
-        
-        .math-problem {
-            background: #fff9e6;
-            padding: 12px 18px;
-            border-radius: 8px;
-            margin: 10px 0;
-            font-family: 'Courier New', monospace;
-            border-left: 4px solid #ffc107;
-        }
-        
-        .math-result {
-            color: var(--success);
-            font-weight: 600;
-        }
-        
-        .student-prediction {
-            text-align: center;
-            padding: 20px;
-            background: linear-gradient(135deg, #667eea20 0%, #764ba220 100%);
-            border-radius: 12px;
-        }
-        
-        .score {
-            font-size: 2.5rem;
-            font-weight: 700;
-            color: var(--primary);
-            margin: 10px 0;
-        }
-        
-        .hours {
-            font-size: 1.2rem;
-            color: #666;
-        }
-        
-        footer {
-            text-align: center;
-            padding: 20px;
-            color: white;
-            font-size: 0.9rem;
-            opacity: 0.9;
-        }
-        
-        @media (max-width: 600px) {
-            header h1 { font-size: 1.5rem; }
-            .card { padding: 20px; }
-            .download-links { flex-direction: column; }
-            .btn { width: 100%; justify-content: center; }
-        }
-    </style>
 </head>
 <body>
-    <div class="container">
-        <header>
-            <h1>🎓 Моя презентация</h1>
-            <p>Проект по машинному обучению и анализу данных</p>
-        </header>
+
+    <p>
+        Нажмите, чтобы скачать или открыть презентацию:<br>
+        <a href="СетьВводных.pptx">Презентация в формате .pptx</a><br><br>
         
-        <!-- Секция: Скачать файлы -->
-        <div class="card">
-            <div class="card-title">📥 Скачать материалы</div>
-            <p>Нажмите, чтобы скачать или открыть файлы:</p>
-            <div class="download-links">
-                <a href="СетьВводных.pptx" class="btn">
-                    📊 Презентация .pptx
-                </a>
-                <a href="index.html" class="btn btn-outline">
-                    🔤 Проверка кириллицы .html
-                </a>
-            </div>
-        </div>
-        
-        <!-- Секция: Предсказания модели -->
-        <div class="card">
-            <div class="card-title">🔮 Предсказания модели</div>
-            <span class="date-badge">📅 16.02.2026</span>
-            <p><strong>Топ-3 предсказаний:</strong></p>
-            <div class="prediction-item">
-                <span class="prediction-label">👟 running shoe</span>
-                <span class="prediction-value">99.45%</span>
-            </div>
-            <div class="prediction-item">
-                <span class="prediction-label">🏪 shoe store</span>
-                <span class="prediction-value">0.27%</span>
-            </div>
-            <div class="prediction-item">
-                <span class="prediction-label">🥾 clogs</span>
-                <span class="prediction-value">0.15%</span>
-            </div>
-        </div>
-        
-        <!-- Секция: Бот-ответы -->
-        <div class="card">
-            <div class="card-title">🤖 FAQ Бот</div>
-            <span class="date-badge">📅 16.02.2026</span>
-            <p><strong>Вопрос пользователя:</strong> Как можно оплатить свой заказ?</p>
-            <p class="similarity">🔍 Найден похожий вопрос: «Как оплатить заказ?» (sim=0.868)</p>
-            <div class="faq-answer">
-                <strong>💡 Ответ бота:</strong><br>
-                Оплатить можно по номеру телефона, указанного в описании заказа
-            </div>
-        </div>
-        
-        <!-- Секция: Философская цитата -->
-        <div class="card">
-            <div class="card-title">💭 Мысли поколения</div>
-            <span class="date-badge">📅 21.02.2026</span>
-            <div class="quote">
-                У каждого поколения есть свой философ, писатель или художник, который захватывает и воплощает в себе идею времени... 
-                <strong>У нашего поколения есть философ. Он не художник и не писатель. Он программист.</strong>
-            </div>
-        </div>
-        
-        <!-- Секция: Математические загадки -->
-        <div class="card">
-            <div class="card-title">🧮 Криптоарифметика</div>
-            <span class="date-badge">📅 25.02.26</span>
-            
-            <div class="math-problem">
-                <div>9567 + 1085 = <span class="math-result">10652</span> ✓</div>
-            </div>
-            
-            <div class="math-problem">
-                <div>🔤 ВОЛК + ЛИСА = ЗВЕРИ</div>
-                <div class="math-result">8294 + 9763 = 18057</div>
-            </div>
-            
-            <div class="math-problem">
-                <div>🔤 КТО + КОТ = ТОК</div>
-                <div class="math-result">495 + 459 = 954</div>
-            </div>
-            
-            <div class="math-problem">
-                <div>🔤 КОШКА + КОШКА + КОШКА = СОБАКА</div>
-                <div class="math-result">56350 × 3 = 169050</div>
-            </div>
-            
-            <div class="math-problem">
-                <div>🔤 СИНУС + СИНУС + КОСИНУС = ТАНГЕНС</div>
-                <div class="math-result">58725 + 58725 + 3958725 = 4076175</div>
-            </div>
-        </div>
-        
-        <!-- Секция: Прогноз для студента -->
-        <div class="card">
-            <div class="card-title">📈 Прогноз успеваемости</div>
-            <div class="student-prediction">
-                  <span class="date-badge">📅 14.03.2026</span>
-                <p class="hours">⏱️ Студент занимался: <strong>5 часов</strong></p>
-                <p>🎯 Прогноз баллов:</p>
-                <div class="score">50.23</div>
-                <p style="color: #666; font-size: 0.9rem;">на основе регрессионной модели</p>
-            </div>
-        </div>
-        
-        <footer>
-            <p>© 2026 • Проект по Data Science • Создано с ❤️</p>
-        </footer>
-    </div>
+        Нажмите, чтобы скачать или открыть index.html:<br>
+        <a href="index.html">Файл проверки работы с кириллицей .html</a>
+    </p>
+
+    <p>
+        <strong>16.02.2026</strong><br>
+        Топ-3 предсказаний:<br>
+        running shoe: 99.45%<br>
+        shoe store: 0.27%<br>
+        clogs: 0.15%
+    </p>
+
+    <p>
+        <strong>16.02.2026</strong><br><br>
+        Вопрос пользователя: Как можно оплатить свой заказ?<br>
+        Найден FAQ-вопрос: Как оплатить заказ? (sim=0.868)<br>
+        Ответ бот-FAQ: Оплатить можно по номеру телефона, указанного в описании заказа
+    </p>
+
+    <p>
+        <strong>21.02.2026</strong><br>
+        У каждого поколения есть свой философ, писатель или художник, который захватывает и воплощает в себе идею времени. 
+        Иногда эти философы получают признание при жизни, но чаще всего им приходится ждать, пока на них наложит свой отпечаток время. 
+        Независимо от того, будет ли это признание немедленным или запоздалым, эпоха отмечена этими людьми, выражающими свои идеалы в шепоте стихов или в грохоте политического движения. 
+        У нашего поколения есть философ. Он не художник и не писатель. Он программист.
+    </p>
+
+    <p>
+        <strong>25.02.26</strong><br>
+        9567 + 1085 = 10652
+    </p>
+
+    <p>
+        <strong>25.02.26</strong><br><br>
+        Исходное: ВОЛК + ЛИСА = ЗВЕРИ<br>
+        Результат: 8294 + 9763 = 18057<br><br>
+
+        Исходное: КТО + КОТ = ТОК<br>
+        Результат: 495 + 459 = 954<br><br>
+
+        Исходное: КОШКА + КОШКА + КОШКА = СОБАКА<br>
+        Результат: 56350 + 56350 + 56350 = 169050<br><br>
+
+        Исходное: СИНУС + СИНУС + КОСИНУС = ТАНГЕНС<br>
+        Результат: 58725 + 58725 + 3958725 = 4076175
+    </p>
+
+    <p>
+        <strong>14.03.26</strong><br>
+        Студент занимался 5 часов<br>
+        Прогноз баллов: 50.23
+    </p>
+
+    <p>
+        <strong>21.03.26</strong><br>
+        Показатель точности модели по выдаче кредита: 0.69
+    </p>
+
 </body>
 </html>
