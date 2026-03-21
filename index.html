@@ -1,72 +1,468 @@
 <!DOCTYPE html>
-<html>
+<html lang="ru">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Моя презентация</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #6366f1;
+            --primary-hover: #4f46e5;
+            --bg-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            --card-bg: #ffffff;
+            --text-primary: #1f2937;
+            --text-secondary: #6b7280;
+            --border-radius: 16px;
+            --shadow: 0 10px 40px -10px rgba(0, 0, 0, 0.1);
+            --shadow-hover: 0 20px 50px -12px rgba(0, 0, 0, 0.15);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: var(--bg-gradient);
+            color: var(--text-primary);
+            line-height: 1.6;
+            padding: 2rem 1rem;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        header {
+            text-align: center;
+            padding: 2rem 0 3rem;
+            color: white;
+        }
+
+        header h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            text-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        header p {
+            opacity: 0.9;
+            font-size: 1.1rem;
+        }
+
+        .card {
+            background: var(--card-bg);
+            border-radius: var(--border-radius);
+            padding: 1.75rem;
+            margin-bottom: 1.5rem;
+            box-shadow: var(--shadow);
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+            animation: fadeInUp 0.4s ease forwards;
+            opacity: 0;
+        }
+
+        .card:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-hover);
+        }
+
+        .card:nth-child(1) { animation-delay: 0.1s; }
+        .card:nth-child(2) { animation-delay: 0.15s; }
+        .card:nth-child(3) { animation-delay: 0.2s; }
+        .card:nth-child(4) { animation-delay: 0.25s; }
+        .card:nth-child(5) { animation-delay: 0.3s; }
+        .card:nth-child(6) { animation-delay: 0.35s; }
+        .card:nth-child(7) { animation-delay: 0.4s; }
+        .card:nth-child(8) { animation-delay: 0.45s; }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .card-header {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            margin-bottom: 1.25rem;
+            padding-bottom: 1rem;
+            border-bottom: 2px solid #f3f4f6;
+        }
+
+        .date-badge {
+            background: var(--primary);
+            color: white;
+            padding: 0.35rem 0.85rem;
+            border-radius: 50px;
+            font-size: 0.875rem;
+            font-weight: 600;
+            white-space: nowrap;
+        }
+
+        .card-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+
+        .download-links {
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.875rem 1.5rem;
+            background: var(--primary);
+            color: white;
+            text-decoration: none;
+            border-radius: 12px;
+            font-weight: 500;
+            transition: all 0.2s ease;
+            border: none;
+            cursor: pointer;
+        }
+
+        .btn:hover {
+            background: var(--primary-hover);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px -8px rgba(99, 102, 241, 0.4);
+        }
+
+        .btn-outline {
+            background: transparent;
+            border: 2px solid var(--primary);
+            color: var(--primary);
+        }
+
+        .btn-outline:hover {
+            background: var(--primary);
+            color: white;
+        }
+
+        .predictions-list {
+            list-style: none;
+        }
+
+        .predictions-list li {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0.75rem 0;
+            border-bottom: 1px dashed #e5e7eb;
+        }
+
+        .predictions-list li:last-child {
+            border-bottom: none;
+        }
+
+        .prediction-label {
+            font-weight: 500;
+        }
+
+        .prediction-value {
+            font-family: 'SF Mono', 'Fira Code', monospace;
+            background: #f3f4f6;
+            padding: 0.25rem 0.75rem;
+            border-radius: 8px;
+            font-size: 0.9rem;
+            color: var(--primary);
+            font-weight: 600;
+        }
+
+        .faq-answer {
+            background: #f8fafc;
+            border-left: 4px solid var(--primary);
+            padding: 1rem 1.25rem;
+            border-radius: 0 12px 12px 0;
+            margin: 1rem 0;
+        }
+
+        .similarity {
+            display: inline-block;
+            background: #dbeafe;
+            color: #1e40af;
+            padding: 0.2rem 0.6rem;
+            border-radius: 6px;
+            font-size: 0.85rem;
+            font-weight: 500;
+            margin-left: 0.5rem;
+        }
+
+        .quote {
+            font-style: italic;
+            color: var(--text-secondary);
+            font-size: 1.05rem;
+            line-height: 1.8;
+            text-align: center;
+            padding: 1rem;
+            border-left: 3px solid #c7d2fe;
+            background: #f9fafb;
+            border-radius: 0 12px 12px 0;
+        }
+
+        .math-grid {
+            display: grid;
+            gap: 1rem;
+        }
+
+        .math-item {
+            background: #f8fafc;
+            padding: 1rem 1.25rem;
+            border-radius: 12px;
+            border-left: 4px solid #10b981;
+        }
+
+        .math-item strong {
+            color: var(--text-primary);
+            display: block;
+            margin-bottom: 0.25rem;
+        }
+
+        .math-item code {
+            font-family: 'SF Mono', 'Fira Code', monospace;
+            background: #e0e7ff;
+            color: #3730a3;
+            padding: 0.2rem 0.5rem;
+            border-radius: 6px;
+            font-size: 0.95rem;
+        }
+
+        .stat-card {
+            display: grid;
+            grid-template-columns: 1fr auto;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .stat-value {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--primary);
+        }
+
+        .stat-label {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+        }
+
+        .accuracy-meter {
+            width: 100%;
+            height: 8px;
+            background: #e5e7eb;
+            border-radius: 10px;
+            overflow: hidden;
+            margin-top: 0.75rem;
+        }
+
+        .accuracy-fill {
+            height: 100%;
+            width: 69%;
+            background: linear-gradient(90deg, var(--primary), #818cf8);
+            border-radius: 10px;
+            transition: width 0.5s ease;
+        }
+
+        footer {
+            text-align: center;
+            padding: 2rem;
+            color: rgba(255,255,255,0.8);
+            font-size: 0.9rem;
+        }
+
+        @media (max-width: 600px) {
+            header h1 { font-size: 2rem; }
+            .card { padding: 1.25rem; }
+            .stat-card { grid-template-columns: 1fr; text-align: center; }
+            .stat-value { font-size: 1.75rem; }
+        }
+    </style>
 </head>
 <body>
+    <div class="container">
+        <header>
+            <h1>✨ Моя презентация</h1>
+            <p>Коллекция заметок, прогнозов и экспериментов</p>
+        </header>
 
-    <p>
-        Нажмите, чтобы скачать или открыть презентацию:<br>
-        <a href="СетьВводных.pptx">Презентация в формате .pptx</a><br><br>
-        
-        Нажмите, чтобы скачать или открыть index.html:<br>
-        <a href="index.html">Файл проверки работы с кириллицей .html</a>
-    </p>
+        <!-- Downloads -->
+        <div class="card">
+            <div class="card-header">
+                <span class="date-badge">📥 Скачать</span>
+            </div>
+            <div class="download-links">
+                <a href="СетьВводных.pptx" class="btn">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                    Презентация .pptx
+                </a>
+                <a href="index.html" class="btn btn-outline">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
+                    Файл проверки .html
+                </a>
+            </div>
+        </div>
 
-    <p>
-        <strong>16.02.2026</strong><br>
-        Топ-3 предсказаний:<br>
-        running shoe: 99.45%<br>
-        shoe store: 0.27%<br>
-        clogs: 0.15%
-    </p>
+        <!-- Predictions -->
+        <div class="card">
+            <div class="card-header">
+                <span class="date-badge">16.02.2026</span>
+                <span class="card-title">🔮 Топ-3 предсказаний</span>
+            </div>
+            <ul class="predictions-list">
+                <li>
+                    <span class="prediction-label">👟 running shoe</span>
+                    <span class="prediction-value">99.45%</span>
+                </li>
+                <li>
+                    <span class="prediction-label">🏪 shoe store</span>
+                    <span class="prediction-value">0.27%</span>
+                </li>
+                <li>
+                    <span class="prediction-label">🥾 clogs</span>
+                    <span class="prediction-value">0.15%</span>
+                </li>
+            </ul>
+        </div>
 
-    <p>
-        <strong>16.02.2026</strong><br><br>
-        Вопрос пользователя: Как можно оплатить свой заказ?<br>
-        Найден FAQ-вопрос: Как оплатить заказ? (sim=0.868)<br>
-        Ответ бот-FAQ: Оплатить можно по номеру телефона, указанного в описании заказа
-    </p>
+        <!-- FAQ -->
+        <div class="card">
+            <div class="card-header">
+                <span class="date-badge">16.02.2026</span>
+                <span class="card-title">🤖 FAQ Bot</span>
+            </div>
+            <p><strong>Вопрос:</strong> Как можно оплатить свой заказ?</p>
+            <p style="margin-top: 0.75rem;">
+                <strong>Найден вопрос:</strong> Как оплатить заказ? 
+                <span class="similarity">sim=0.868</span>
+            </p>
+            <div class="faq-answer">
+                💳 Оплатить можно по номеру телефона, указанного в описании заказа
+            </div>
+        </div>
 
-    <p>
-        <strong>21.02.2026</strong><br>
-        У каждого поколения есть свой философ, писатель или художник, который захватывает и воплощает в себе идею времени. 
-        Иногда эти философы получают признание при жизни, но чаще всего им приходится ждать, пока на них наложит свой отпечаток время. 
-        Независимо от того, будет ли это признание немедленным или запоздалым, эпоха отмечена этими людьми, выражающими свои идеалы в шепоте стихов или в грохоте политического движения. 
-        У нашего поколения есть философ. Он не художник и не писатель. Он программист.
-    </p>
+        <!-- Quote -->
+        <div class="card">
+            <div class="card-header">
+                <span class="date-badge">21.02.2026</span>
+                <span class="card-title">💭 Мысль дня</span>
+            </div>
+            <div class="quote">
+                «У каждого поколения есть свой философ... У нашего поколения есть философ. 
+                Он не художник и не писатель. <strong>Он программист.</strong>»
+            </div>
+        </div>
 
-    <p>
-        <strong>25.02.26</strong><br>
-        9567 + 1085 = 10652
-    </p>
+        <!-- Simple Math -->
+        <div class="card">
+            <div class="card-header">
+                <span class="date-badge">25.02.26</span>
+                <span class="card-title">🔢 Арифметика</span>
+            </div>
+            <div class="math-item">
+                <code>9567 + 1085 = 10652</code>
+            </div>
+        </div>
 
-    <p>
-        <strong>25.02.26</strong><br><br>
-        Исходное: ВОЛК + ЛИСА = ЗВЕРИ<br>
-        Результат: 8294 + 9763 = 18057<br><br>
+        <!-- Cryptarithmetic -->
+        <div class="card">
+            <div class="card-header">
+                <span class="date-badge">25.02.26</span>
+                <span class="card-title">🧩 Криптарифмы</span>
+            </div>
+            <div class="math-grid">
+                <div class="math-item">
+                    <strong>ВОЛК + ЛИСА = ЗВЕРИ</strong>
+                    <code>8294 + 9763 = 18057</code>
+                </div>
+                <div class="math-item">
+                    <strong>КТО + КОТ = ТОК</strong>
+                    <code>495 + 459 = 954</code>
+                </div>
+                <div class="math-item">
+                    <strong>КОШКА × 3 = СОБАКА</strong>
+                    <code>56350 + 56350 + 56350 = 169050</code>
+                </div>
+                <div class="math-item">
+                    <strong>2×СИНУС + КОСИНУС = ТАНГЕНС</strong>
+                    <code>58725 + 58725 + 3958725 = 4076175</code>
+                </div>
+            </div>
+        </div>
 
-        Исходное: КТО + КОТ = ТОК<br>
-        Результат: 495 + 459 = 954<br><br>
+        <!-- Study Stats -->
+        <div class="card">
+            <div class="card-header">
+                <span class="date-badge">14.03.26</span>
+                <span class="card-title">📚 Прогресс обучения</span>
+            </div>
+            <div class="stat-card">
+                <div>
+                    <div class="stat-label">Время занятий</div>
+                    <div class="stat-value">5 часов</div>
+                </div>
+                <div style="text-align: right;">
+                    <div class="stat-label">Прогноз баллов</div>
+                    <div class="stat-value">50.23</div>
+                </div>
+            </div>
+        </div>
 
-        Исходное: КОШКА + КОШКА + КОШКА = СОБАКА<br>
-        Результат: 56350 + 56350 + 56350 = 169050<br><br>
+        <!-- Model Accuracy -->
+        <div class="card">
+            <div class="card-header">
+                <span class="date-badge">21.03.26</span>
+                <span class="card-title">🎯 Точность модели</span>
+            </div>
+            <p class="stat-label">Выдача кредита</p>
+            <div class="stat-value" style="font-size: 2.5rem;">69%</div>
+            <div class="accuracy-meter">
+                <div class="accuracy-fill"></div>
+            </div>
+            <p style="margin-top: 0.75rem; color: var(--text-secondary); font-size: 0.9rem;">
+                AUC-ROC: 0.69 — модель требует доработки
+            </p>
+        </div>
 
-        Исходное: СИНУС + СИНУС + КОСИНУС = ТАНГЕНС<br>
-        Результат: 58725 + 58725 + 3958725 = 4076175
-    </p>
+        <footer>
+            <p>© 2026 • Создано с ❤️ и кофе</p>
+        </footer>
+    </div>
 
-    <p>
-        <strong>14.03.26</strong><br>
-        Студент занимался 5 часов<br>
-        Прогноз баллов: 50.23
-    </p>
-
-    <p>
-        <strong>21.03.26</strong><br>
-        Показатель точности модели по выдаче кредита: 0.69
-    </p>
-
+    <script>
+        // Плавное появление карточек при скролле
+        document.addEventListener('DOMContentLoaded', () => {
+            const cards = document.querySelectorAll('.card');
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateY(0)';
+                    }
+                });
+            }, { threshold: 0.1 });
+            
+            cards.forEach(card => {
+                card.style.opacity = '0';
+                card.style.transform = 'translateY(20px)';
+                card.style.transition = 'opacity 0.4s ease, transform 0.4s ease';
+                observer.observe(card);
+            });
+        });
+    </script>
 </body>
 </html>
