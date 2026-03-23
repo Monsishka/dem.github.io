@@ -1,40 +1,36 @@
-import pandas as pd
-import numpy as np  # Импорт перенесен в начало
-
-# 1. Загрузка данных
-data = pd.read_csv('/home/user/2025/203C/Нейросеть/StudentsPerformance.csv')
-
-# 2. Кодирование категориальных признаков
 gender_map = {'female':0, 'male':1}
 lunch_map = {'free/reduced':0,'standard':1}
 test_preparation_course_map = {'none':0,'completed':1}
-
 data['gender'] = data['gender'].map(gender_map)
 data['lunch'] = data['lunch'].map(lunch_map)
 data['test preparation course'] = data['test preparation course'].map(test_preparation_course_map)
+data.head()
 
-# 3. Формирование X и y
-# ИЗМЕНЕНИЕ: Добавлен признак 'reading score'
+
+
 X = data[['gender', 'lunch', 'test preparation course', 'reading score']]
 y = data[['math score']]
-
-# 4. Нормализация
 from sklearn.preprocessing import MinMaxScaler
 scaler_X = MinMaxScaler()
 scaler_y = MinMaxScaler()
 
+
+
 X = scaler_X.fit_transform(X)
 y = scaler_y.fit_transform(y)
 
-# 5. Разделение на выборки
+
+
 from sklearn.model_selection import train_test_split
 X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.1, random_state=42)
 
-# 6. Функция ошибки
+
+
 def MSE(predictions, targets):
     return np.mean((predictions - targets)**2)
 
-# 7. Класс нейросети
+
+
 class Network(object):
     def __init__(self, input_dim, hidden_dim, output_dim, learning_rate):
         self.input_dim = input_dim
@@ -72,7 +68,8 @@ class Network(object):
         delta_layer_1 = error_layer_1 * self.sigmoid_derivative(self.outputs_1)
         self.weights_0_1 -= self.learning_rate * np.dot(delta_layer_1, inputs.T)
 
-# 8. Обучение
+
+import numpy as np
 epochs = 1000
 learning_rate = 0.1
 
@@ -102,7 +99,7 @@ for epoch in range(epochs):
 
 print("\n✅ Обучение завершено!")
 
-# 9. Тестирование
+
 test_predictions = []
 for i in range(len(X_test)):
     inputs = X_test[i].reshape(-1, 1)
