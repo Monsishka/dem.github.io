@@ -3,16 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Лог событий и Презентация</title>
+    <title>Журнал экспериментов</title>
     <style>
         :root {
-            --primary-color: #4f46e5;
-            --bg-color: #f3f4f6;
+            --bg-color: #f0f2f5;
             --card-bg: #ffffff;
-            --text-main: #1f2937;
-            --text-secondary: #6b7280;
-            --accent-green: #10b981;
-            --accent-blue: #3b82f6;
+            --text-main: #333333;
+            --text-secondary: #666666;
+            --accent-color: #3b82f6;
+            --date-color: #ef4444;
+            --border-radius: 12px;
         }
 
         body {
@@ -29,227 +29,248 @@
             margin: 0 auto;
         }
 
-        header {
-            text-align: center;
-            margin-bottom: 40px;
-            padding: 20px;
-            background: linear-gradient(135deg, #4f46e5 0%, #7c3aed 100%);
-            border-radius: 16px;
-            color: white;
-            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
-        }
-
-        h1 { margin: 0; font-size: 2rem; }
-        h2 { font-size: 1.2rem; opacity: 0.9; font-weight: 400; }
-
-        /* Карточки */
-        .card {
+        /* Стили для заголовка и ссылок */
+        .header-card {
             background: var(--card-bg);
-            border-radius: 12px;
-            padding: 24px;
-            margin-bottom: 24px;
-            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
-            transition: transform 0.2s ease, box-shadow 0.2s ease;
-        }
-
-        .card:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
-        }
-
-        .date-badge {
-            display: inline-block;
-            background-color: #e0e7ff;
-            color: var(--primary-color);
-            padding: 4px 12px;
-            border-radius: 99px;
-            font-size: 0.85rem;
-            font-weight: 600;
-            margin-bottom: 16px;
-        }
-
-        /* Ссылки-кнопки */
-        .btn-group {
-            display: flex;
-            gap: 15px;
-            flex-wrap: wrap;
+            padding: 20px;
+            border-radius: var(--border-radius);
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            margin-bottom: 20px;
+            text-align: center;
         }
 
         .btn {
+            display: inline-block;
+            margin: 5px;
+            padding: 10px 20px;
+            background-color: var(--accent-color);
+            color: white;
             text-decoration: none;
-            padding: 12px 24px;
-            border-radius: 8px;
-            font-weight: 600;
+            border-radius: 6px;
             transition: background 0.2s;
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
+            font-weight: 500;
         }
 
-        .btn-primary {
-            background-color: var(--primary-color);
-            color: white;
+        .btn:hover {
+            background-color: #2563eb;
         }
-        .btn-primary:hover { background-color: #4338ca; }
 
         .btn-secondary {
-            background-color: #e5e7eb;
-            color: var(--text-main);
+            background-color: #64748b;
         }
-        .btn-secondary:hover { background-color: #d1d5db; }
 
-        /* Блоки кода и данных */
-        .data-block {
-            background-color: #1f2937;
-            color: #a5f3fc;
-            padding: 16px;
+        /* Стили для карточек с записями */
+        .entry-card {
+            background: var(--card-bg);
+            border-radius: var(--border-radius);
+            padding: 25px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+            border-left: 5px solid var(--accent-color);
+        }
+
+        .date {
+            font-size: 0.85rem;
+            color: var(--date-color);
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 10px;
+            display: block;
+        }
+
+        h3 {
+            margin-top: 0;
+            font-size: 1.2rem;
+            color: #1e293b;
+        }
+
+        /* Оформление списков и данных */
+        .data-list {
+            list-style: none;
+            padding: 0;
+            margin: 10px 0;
+        }
+
+        .data-list li {
+            padding: 5px 0;
+            border-bottom: 1px solid #eee;
+        }
+
+        .data-list li:last-child {
+            border-bottom: none;
+        }
+
+        .highlight {
+            font-weight: bold;
+            color: var(--accent-color);
+        }
+
+        /* Блоки с кодом и математикой */
+        pre {
+            background: #1e293b;
+            color: #a5b4fc;
+            padding: 15px;
             border-radius: 8px;
+            overflow-x: auto;
             font-family: 'Consolas', 'Monaco', monospace;
             font-size: 0.9rem;
-            overflow-x: auto;
-            margin-top: 10px;
         }
-
-        .prediction-item {
-            display: flex;
-            justify-content: space-between;
-            border-bottom: 1px solid #eee;
-            padding: 8px 0;
-        }
-        .prediction-item:last-child { border-bottom: none; }
-        .confidence { font-weight: bold; color: var(--accent-green); }
 
         /* Цитата */
         blockquote {
-            border-left: 4px solid var(--accent-blue);
-            margin: 0;
+            border-left: 4px solid #cbd5e1;
+            margin: 10px 0;
             padding-left: 20px;
             font-style: italic;
-            color: #4b5563;
-            font-size: 1.1rem;
+            color: #475569;
+            background: #f8fafc;
+            padding: 15px;
+            border-radius: 0 8px 8px 0;
         }
 
-        /* FAQ */
-        .faq-box {
-            border-left: 3px solid var(--primary-color);
-            padding-left: 15px;
+        /* Таблица результатов */
+        .result-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin-top: 15px;
         }
-        .faq-question { font-weight: bold; color: var(--text-main); }
-        .faq-answer { color: var(--text-secondary); margin-top: 5px; }
 
+        .stat-box {
+            background: #f1f5f9;
+            padding: 10px;
+            border-radius: 6px;
+            text-align: center;
+        }
+        
+        .stat-value {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--text-main);
+        }
+
+        .stat-label {
+            font-size: 0.8rem;
+            color: var(--text-secondary);
+        }
     </style>
 </head>
 <body>
 
 <div class="container">
-    <header>
-        <h1>Моя презентация</h1>
-        <h2>Лог событий и материалы</h2>
-    </header>
 
-    <!-- Блок загрузки файлов -->
-    <div class="card">
-        <span class="date-badge">Материалы</span>
-        <p style="margin-bottom: 20px;">Нажмите, чтобы скачать или открыть файлы:</p>
-        <div class="btn-group">
-            <a href="СетьВводных.pptx" class="btn btn-primary">
-                📄 Презентация .pptx
-            </a>
-            <a href="index.html" class="btn btn-secondary">
-                🌐 Проверка кириллицы .html
-            </a>
-        </div>
+    <!-- Шапка с файлами -->
+    <div class="header-card">
+        <h2>Материалы к презентации</h2>
+        <p>Нажмите, чтобы скачать или открыть файлы:</p>
+        <a href="СетьВводных.pptx" class="btn">📄 Презентация .pptx</a>
+        <a href="index.html" class="btn btn-secondary">🌐 Файл проверки (index.html)</a>
     </div>
 
-    <!-- 16.02.2026: AI Predictions -->
-    <div class="card">
-        <span class="date-badge">16.02.2026</span>
-        <h3>🤖 Классификация изображений</h3>
-        <div class="prediction-item">
-            <span>running shoe</span>
-            <span class="confidence">99.45%</span>
-        </div>
-        <div class="prediction-item">
-            <span>shoe store</span>
-            <span>0.27%</span>
-        </div>
-        <div class="prediction-item">
-            <span>clogs</span>
-            <span>0.15%</span>
-        </div>
+    <!-- 16.02.2026 - Классификация -->
+    <div class="entry-card">
+        <span class="date">16.02.2026</span>
+        <h3>Топ-3 предсказания модели</h3>
+        <ul class="data-list">
+            <li><strong>running shoe:</strong> <span class="highlight">99.45%</span></li>
+            <li><strong>shoe store:</strong> 0.27%</li>
+            <li><strong>clogs:</strong> 0.15%</li>
+        </ul>
     </div>
 
-    <!-- 16.02.2026: FAQ Bot -->
-    <div class="card">
-        <span class="date-badge">16.02.2026</span>
-        <h3>💬 Работа бота поддержки</h3>
-        <div class="faq-box">
-            <p class="faq-question">❓ Вопрос пользователя: Как можно оплатить свой заказ?</p>
-            <p style="font-size: 0.9em; color: #9ca3af;">Найден FAQ-вопрос: <i>Как оплатить заказ?</i> (sim=0.868)</p>
-            <p class="faq-answer">✅ <strong>Ответ бота:</strong> Оплатить можно по номеру телефона, указанного в описании заказа.</p>
-        </div>
+    <!-- 16.02.2026 - FAQ Бот -->
+    <div class="entry-card">
+        <span class="date">16.02.2026</span>
+        <h3>Работа бота поддержки</h3>
+        <p><strong>Вопрос пользователя:</strong> Как можно оплатить свой заказ?</p>
+        <p><strong>Найден FAQ-вопрос:</strong> Как оплатить заказ? <em>(sim=0.868)</em></p>
+        <p><strong>Ответ бота:</strong> Оплатить можно по номеру телефона, указанного в описании заказа.</p>
     </div>
 
-    <!-- 21.02.2026: Philosophy -->
-    <div class="card" style="background: linear-gradient(to right, #ffffff, #f9fafb);">
-        <span class="date-badge">21.02.2026</span>
-        <h3>📜 Мысли о поколении</h3>
+    <!-- 21.02.2026 - Философия -->
+    <div class="entry-card" style="border-left-color: #8b5cf6;">
+        <span class="date">21.02.2026</span>
         <blockquote>
-            У каждого поколения есть свой философ, писатель или художник, который захватывает и воплощает в себе идею времени. Иногда эти философы получают признание при жизни, но чаще всего им приходится ждать, пока на них наложит свой отпечаток время. Независимо от того, будет ли это признание немедленным или запоздалым, эпоха отмечена этими людьми, выражающими свои идеалы в шепоте стихов или в грохоте политического движения. <br><br>
+            У каждого поколения есть свой философ, писатель или художник, который захватывает и воплощает в себе идею времени. Иногда эти философы получают признание при жизни, но чаще всего им приходится ждать, пока на них наложит свой отпечаток время. Независимо от того, будет ли это признание немедленным или запоздалым, эпоха отмечена этими людьми...
+            <br><br>
             <strong>У нашего поколения есть философ. Он не художник и не писатель. Он программист.</strong>
         </blockquote>
     </div>
 
-    <!-- 25.02.26: Math & Logic -->
-    <div class="card">
-        <span class="date-badge">25.02.26</span>
-        <h3>🧮 Криптоарифметика и вычисления</h3>
-        <div class="data-block">
-            9567 + 1085 = 10652
-            <br><br>
-            ВОЛК + ЛИСА = ЗВЕРИ
-            >> 8294 + 9763 = 18057
-            <br><br>
-            КОШКА + КОШКА + КОШКА = СОБАКА
-            >> 56350 + 56350 + 56350 = 169050
-            <br><br>
-            СИНУС + СИНУС + КОСИНУС = ТАНГЕНС
-            >> 58725 + 58725 + 3958725 = 4076175
-        </div>
-    </div>
-
-    <!-- 14.03.26: Student Stats -->
-    <div class="card">
-        <span class="date-badge">14.03.26</span>
-        <h3>🎓 Прогноз успеваемости</h3>
-        <p>Студент занимался <strong>5 часов</strong>.</p>
-        <div style="background: #e5e7eb; height: 10px; border-radius: 5px; overflow: hidden;">
-            <div style="background: var(--accent-blue); width: 50.23%; height: 100%;"></div>
-        </div>
-        <p style="text-align: right; font-weight: bold; margin-top: 5px;">Прогноз баллов: 50.23</p>
-    </div>
-
-    <!-- 21.03.26: Model Accuracy -->
-    <div class="card">
-        <span class="date-badge">21.03.26</span>
-        <h3>📊 Метрики моделей</h3>
+    <!-- 25.02.26 - Математика -->
+    <div class="entry-card">
+        <span class="date">25.02.2026</span>
+        <h3>Арифметика и Криптарифметика</h3>
+        <pre>9567 + 1085 = 10652</pre>
         
-        <div style="margin-bottom: 20px;">
-            <p><strong>Модель выдачи кредита</strong></p>
-            <div class="data-block" style="display: inline-block; background: #f3f4f6; color: #374151;">
-                Точность (Accuracy): 0.69
+        <p><strong>ВОЛК + ЛИСА = ЗВЕРИ</strong></p>
+        <pre>8294 + 9763 = 18057</pre>
+
+        <p><strong>КТО + КОТ = ТОК</strong></p>
+        <pre>495 + 459 = 954</pre>
+
+        <p><strong>КОШКА + КОШКА + КОШКА = СОБАКА</strong></p>
+        <pre>56350 + 56350 + 56350 = 169050</pre>
+
+        <p><strong>СИНУС + СИНУС + КОСИНУС = ТАНГЕНС</strong></p>
+        <pre>58725 + 58725 + 3958725 = 4076175</pre>
+    </div>
+
+    <!-- 14.03.26 - Прогноз студента -->
+    <div class="entry-card">
+        <span class="date">14.03.2026</span>
+        <div class="result-grid">
+            <div class="stat-box">
+                <div class="stat-label">Время учебы</div>
+                <div class="stat-value">5 часов</div>
+            </div>
+            <div class="stat-box">
+                <div class="stat-label">Прогноз баллов</div>
+                <div class="stat-value highlight">50.23</div>
             </div>
         </div>
+    </div>
 
-        <div>
-            <p><strong>Модель страхования КАСКО</strong></p>
-            <div class="data-block" style="display: inline-block; background: #f3f4f6; color: #374151;">
-                Точность (Accuracy): 0.87
+    <!-- 21.03.26 - Кредиты и Страхование -->
+    <div class="entry-card">
+        <span class="date">21.03.2026</span>
+        <h3>Метрики моделей</h3>
+        <p><strong>Кредитный скоринг:</strong> Точность (Accuracy) — 0.69</p>
+        <hr style="border: 0; border-top: 1px solid #eee; margin: 15px 0;">
+        <p><strong>Страхование КАСКО:</strong> Точность — <span class="highlight">0.87</span></p>
+        <div class="result-grid">
+            <div class="stat-box">
+                <div class="stat-value" style="color: green;">75</div>
+                <div class="stat-label">Одобрено</div>
             </div>
-            <div style="margin-top: 10px; display: flex; gap: 15px;">
-                <span style="color: var(--accent-green);">✔ Одобрено: 75</span>
-                <span style="color: #ef4444;">✖ Отказ: 125</span>
+            <div class="stat-box">
+                <div class="stat-value" style="color: red;">125</div>
+                <div class="stat-label">Отказ</div>
             </div>
+        </div>
+    </div>
+
+    <!-- 23.03.26 - Нейросеть -->
+    <div class="entry-card">
+        <span class="date">23.03.2026</span>
+        <h3>Итоговые результаты нейросети</h3>
+        <p>Ошибка на обучении (MSE): <strong>0.004438</strong> | Ошибка на тесте (MSE): <strong>0.004010</strong></p>
+        
+        <p><strong>Примеры прогнозов:</strong></p>
+        <ul class="data-list">
+            <li>Факт: 91.0 | Прогноз: 78.3</li>
+            <li>Факт: 53.0 | Прогноз: 55.0</li>
+            <li>Факт: 80.0 | Прогноз: 77.4</li>
+            <li>Факт: 74.0 | Прогноз: 76.3</li>
+            <li>Факт: 84.0 | Прогноз: 83.4</li>
+        </ul>
+
+        <div style="background: #eef2ff; padding: 15px; border-radius: 8px; margin-top: 15px; font-size: 0.95rem;">
+            <strong>Как это работает:</strong><br>
+            Нейросеть работает по принципу многослойного взвешенного голосования: она принимает входные данные, умножает их на веса (коэффициенты важности), суммирует и пропускает через функцию активации (сигмоиду), которая «изгибает» линейную зависимость, позволяя модели находить сложные нелинейные закономерности. 
+            <br><br>
+            В отличие от линейной регрессии, которая строит только прямую линию, и дерева решений, которое делит данные на прямоугольные зоны жесткими правилами, нейросеть создает плавные границы решений. Обучение происходит методом обратного распространения ошибки.
         </div>
     </div>
 
