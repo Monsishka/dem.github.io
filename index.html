@@ -3,285 +3,224 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Журнал экспериментов</title>
+    <title>Отчет о работе</title>
     <style>
+        /* Основные настройки страницы */
         :root {
-            --bg-color: #f0f2f5;
+            --primary-color: #4a90e2;
+            --bg-color: #f4f7f6;
             --card-bg: #ffffff;
-            --text-main: #333333;
-            --text-secondary: #666666;
-            --accent-color: #3b82f6;
-            --date-color: #ef4444;
-            --border-radius: 12px;
+            --text-color: #333;
+            --text-secondary: #666;
+            --code-bg: #2d2d2d;
+            --code-text: #f8f8f2;
         }
 
         body {
-            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             background-color: var(--bg-color);
-            color: var(--text-main);
+            color: var(--text-color);
             line-height: 1.6;
             margin: 0;
             padding: 20px;
         }
 
+        /* Контейнер для центрирования контента */
         .container {
             max-width: 800px;
             margin: 0 auto;
         }
 
-        /* Стили для заголовка и ссылок */
-        .header-card {
-            background: var(--card-bg);
-            padding: 20px;
-            border-radius: var(--border-radius);
-            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
-            margin-bottom: 20px;
+        h1 {
             text-align: center;
+            color: var(--primary-color);
+            margin-bottom: 40px;
         }
 
-        .btn {
-            display: inline-block;
-            margin: 5px;
-            padding: 10px 20px;
-            background-color: var(--accent-color);
-            color: white;
-            text-decoration: none;
-            border-radius: 6px;
-            transition: background 0.2s;
-            font-weight: 500;
-        }
-
-        .btn:hover {
-            background-color: #2563eb;
-        }
-
-        .btn-secondary {
-            background-color: #64748b;
-        }
-
-        /* Стили для карточек с записями */
-        .entry-card {
+        /* Карточка для каждого блока */
+        .card {
             background: var(--card-bg);
-            border-radius: var(--border-radius);
+            border-radius: 12px;
             padding: 25px;
-            margin-bottom: 20px;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
-            border-left: 5px solid var(--accent-color);
+            margin-bottom: 25px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            transition: transform 0.2s;
         }
 
-        .date {
-            font-size: 0.85rem;
-            color: var(--date-color);
+        .card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.1);
+        }
+
+        /* Стиль для даты */
+        .date-badge {
+            display: inline-block;
+            background-color: #e1ecf7;
+            color: var(--primary-color);
+            padding: 4px 10px;
+            border-radius: 20px;
+            font-size: 0.85em;
             font-weight: bold;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            margin-bottom: 10px;
+            margin-bottom: 15px;
+        }
+
+        /* Ссылки */
+        a {
+            color: var(--primary-color);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.2s;
+        }
+
+        a:hover {
+            color: #357abd;
+            text-decoration: underline;
+        }
+
+        .download-list a {
+            display: block;
+            margin-bottom: 8px;
+            padding: 8px 12px;
+            background-color: #f9f9f9;
+            border-radius: 6px;
+            border: 1px solid #eee;
+        }
+        
+        .download-list a:hover {
+            background-color: #eef4fa;
+            text-decoration: none;
+        }
+
+        /* Блоки с кодом/логами */
+        .code-block {
+            background-color: var(--code-bg);
+            color: var(--code-text);
+            padding: 15px;
+            border-radius: 8px;
+            font-family: 'Consolas', 'Monaco', monospace;
+            font-size: 0.9em;
+            overflow-x: auto;
+            white-space: pre-wrap; /* Сохраняет переносы строк */
+        }
+
+        .code-title {
+            color: #aaa;
+            font-size: 0.8em;
+            margin-bottom: 5px;
             display: block;
         }
 
-        h3 {
-            margin-top: 0;
-            font-size: 1.2rem;
-            color: #1e293b;
+        /* Разделитель */
+        hr {
+            border: 0;
+            height: 1px;
+            background: #eee;
+            margin: 20px 0;
         }
 
-        /* Оформление списков и данных */
-        .data-list {
-            list-style: none;
-            padding: 0;
-            margin: 10px 0;
-        }
-
-        .data-list li {
-            padding: 5px 0;
-            border-bottom: 1px solid #eee;
-        }
-
-        .data-list li:last-child {
-            border-bottom: none;
-        }
-
+        /* Акцент для текста */
         .highlight {
             font-weight: bold;
-            color: var(--accent-color);
-        }
-
-        /* Блоки с кодом и математикой */
-        pre {
-            background: #1e293b;
-            color: #a5b4fc;
-            padding: 15px;
-            border-radius: 8px;
-            overflow-x: auto;
-            font-family: 'Consolas', 'Monaco', monospace;
-            font-size: 0.9rem;
-        }
-
-        /* Цитата */
-        blockquote {
-            border-left: 4px solid #cbd5e1;
-            margin: 10px 0;
-            padding-left: 20px;
-            font-style: italic;
-            color: #475569;
-            background: #f8fafc;
-            padding: 15px;
-            border-radius: 0 8px 8px 0;
-        }
-
-        /* Таблица результатов */
-        .result-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 15px;
-            margin-top: 15px;
-        }
-
-        .stat-box {
-            background: #f1f5f9;
-            padding: 10px;
-            border-radius: 6px;
-            text-align: center;
-        }
-        
-        .stat-value {
-            font-size: 1.5rem;
-            font-weight: bold;
-            color: var(--text-main);
-        }
-
-        .stat-label {
-            font-size: 0.8rem;
-            color: var(--text-secondary);
+            color: #2c3e50;
         }
     </style>
 </head>
 <body>
 
 <div class="container">
+    <h1>📂 Архив проектов</h1>
 
-    <!-- Шапка с файлами -->
-    <div class="header-card">
-        <h2>Материалы к презентации</h2>
-        <p>Нажмите, чтобы скачать или открыть файлы:</p>
-        <a href="СетьВводных.pptx" class="btn">📄 Презентация .pptx</a>
-        <a href="index.html" class="btn btn-secondary">🌐 Файл проверки (index.html)</a>
+    <!-- Блок 1: Файлы -->
+    <div class="card">
+        <span class="date-badge">Файлы проекта</span>
+        <p>Выберите файл для скачивания или просмотра:</p>
+        <div class="download-list">
+            <a href="СетьВводных.pptx">📊 Презентация в формате .pptx</a>
+            <a href="index.html">🌐 Файл проверки работы с кириллицей (.html)</a>
+        </div>
     </div>
 
-    <!-- 16.02.2026 - Классификация -->
-    <div class="entry-card">
-        <span class="date">16.02.2026</span>
-        <h3>Топ-3 предсказания модели</h3>
-        <ul class="data-list">
-            <li><strong>running shoe:</strong> <span class="highlight">99.45%</span></li>
-            <li><strong>shoe store:</strong> 0.27%</li>
-            <li><strong>clogs:</strong> 0.15%</li>
-        </ul>
+    <!-- Блок 2: Предсказания -->
+    <div class="card">
+        <span class="date-badge">16.02.2026</span>
+        <div class="code-block">
+<span class="code-title">Результаты модели:</span>
+Топ-3 предсказания:
+running shoe: 99.45%
+shoe store: 0.27%
+clogs: 0.15%
+        </div>
     </div>
 
-    <!-- 16.02.2026 - FAQ Бот -->
-    <div class="entry-card">
-        <span class="date">16.02.2026</span>
-        <h3>Работа бота поддержки</h3>
-        <p><strong>Вопрос пользователя:</strong> Как можно оплатить свой заказ?</p>
-        <p><strong>Найден FAQ-вопрос:</strong> Как оплатить заказ? <em>(sim=0.868)</em></p>
-        <p><strong>Ответ бота:</strong> Оплатить можно по номеру телефона, указанного в описании заказа.</p>
+    <!-- Блок 3: FAQ -->
+    <div class="card">
+        <span class="date-badge">16.02.2026</span>
+        <p><span class="highlight">Вопрос пользователя:</span> Как можно оплатить свой заказ?</p>
+        <div class="code-block" style="background-color: #f1f1f1; color: #333;">
+<span class="code-title" style="color: #666;">Лог работы бота:</span>
+Найден FAQ-вопрос: Как оплатить заказ? (sim=0.868)
+Ответ бот-FAQ: Оплатить можно по номеру телефона, указанного в описании заказа
+        </div>
     </div>
 
-    <!-- 21.02.2026 - Философия -->
-    <div class="entry-card" style="border-left-color: #8b5cf6;">
-        <span class="date">21.02.2026</span>
-        <blockquote>
-            У каждого поколения есть свой философ, писатель или художник, который захватывает и воплощает в себе идею времени. Иногда эти философы получают признание при жизни, но чаще всего им приходится ждать, пока на них наложит свой отпечаток время. Независимо от того, будет ли это признание немедленным или запоздалым, эпоха отмечена этими людьми...
+    <!-- Блок 4: Текст -->
+    <div class="card">
+        <span class="date-badge">21.02.2026</span>
+        <p>
+            У каждого поколения есть свой философ, писатель или художник, который захватывает и воплощает в себе идею времени. Иногда эти философы получают признание при жизни, но чаще всего им приходится ждать, пока на них наложит свой отпечаток время. Независимо от того, будет ли это признание немедленным или запоздалым, эпоха отмечена этими людьми, выражающими свои идеалы в шепоте стихов или в грохоте политического движения. 
             <br><br>
-            <strong>У нашего поколения есть философ. Он не художник и не писатель. Он программист.</strong>
-        </blockquote>
+            У нашего поколения есть философ. Он не художник и не писатель. <strong>Он программист.</strong>
+        </p>
     </div>
 
-    <!-- 25.02.26 - Математика -->
-    <div class="entry-card">
-        <span class="date">25.02.2026</span>
-        <h3>Арифметика и Криптарифметика</h3>
-        <pre>9567 + 1085 = 10652</pre>
-        
-        <p><strong>ВОЛК + ЛИСА = ЗВЕРИ</strong></p>
-        <pre>8294 + 9763 = 18057</pre>
-
-        <p><strong>КТО + КОТ = ТОК</strong></p>
-        <pre>495 + 459 = 954</pre>
-
-        <p><strong>КОШКА + КОШКА + КОШКА = СОБАКА</strong></p>
-        <pre>56350 + 56350 + 56350 = 169050</pre>
-
-        <p><strong>СИНУС + СИНУС + КОСИНУС = ТАНГЕНС</strong></p>
-        <pre>58725 + 58725 + 3958725 = 4076175</pre>
-    </div>
-
-    <!-- 14.03.26 - Прогноз студента -->
-    <div class="entry-card">
-        <span class="date">14.03.2026</span>
-        <div class="result-grid">
-            <div class="stat-box">
-                <div class="stat-label">Время учебы</div>
-                <div class="stat-value">5 часов</div>
-            </div>
-            <div class="stat-box">
-                <div class="stat-label">Прогноз баллов</div>
-                <div class="stat-value highlight">50.23</div>
-            </div>
+    <!-- Блок 5: Математика -->
+    <div class="card">
+        <span class="date-badge">25.02.2026</span>
+        <div class="code-block">
+<span class="code-title">Простая арифметика:</span>
+9567 + 1085 = 10652
         </div>
     </div>
 
-    <!-- 21.03.26 - Кредиты и Страхование -->
-    <div class="entry-card">
-        <span class="date">21.03.2026</span>
-        <h3>Метрики моделей</h3>
-        <p><strong>Кредитный скоринг:</strong> Точность (Accuracy) — 0.69</p>
-        <hr style="border: 0; border-top: 1px solid #eee; margin: 15px 0;">
-        <p><strong>Страхование КАСКО:</strong> Точность — <span class="highlight">0.87</span></p>
-        <div class="result-grid">
-            <div class="stat-box">
-                <div class="stat-value" style="color: green;">75</div>
-                <div class="stat-label">Одобрено</div>
-            </div>
-            <div class="stat-box">
-                <div class="stat-value" style="color: red;">125</div>
-                <div class="stat-label">Отказ</div>
-            </div>
+    <!-- Блок 6: Криптоарифметика -->
+    <div class="card">
+        <span class="date-badge">25.02.2026</span>
+        <div class="code-block">
+<span class="code-title">Криптоарифметические задачи:</span>
+Исходное: ВОЛК + ЛИСА = ЗВЕРИ
+Результат: 8294 + 9763 = 18057
+---------------------------
+Исходное: КТО + КОТ = ТОК
+Результат: 495 + 459 = 954
+---------------------------
+Исходное: КОШКА + КОШКА + КОШКА = СОБАКА
+Результат: 56350 + 56350 + 56350 = 169050
+---------------------------
+Исходное: СИНУС + СИНУС + КОСИНУС = ТАНГЕНС
+Результат: 58725 + 58725 + 3958725 = 4076175
         </div>
     </div>
 
-    <!-- 23.03.26 - Нейросеть -->
-    <div class="entry-card">
-        <span class="date">23.03.2026</span>
-        <h3>Итоговые результаты нейросети</h3>
-        <p>Ошибка на обучении (MSE): <strong>0.004438</strong> | Ошибка на тесте (MSE): <strong>0.004010</strong></p>
-        
-        <p><strong>Примеры прогнозов:</strong></p>
-        <ul class="data-list">
-            <li>Факт: 91.0 | Прогноз: 78.3</li>
-            <li>Факт: 53.0 | Прогноз: 55.0</li>
-            <li>Факт: 80.0 | Прогноз: 77.4</li>
-            <li>Факт: 74.0 | Прогноз: 76.3</li>
-            <li>Факт: 84.0 | Прогноз: 83.4</li>
-        </ul>
+    <!-- Блок 7: Ссылки на схемы -->
+    <div class="card">
+        <p>
+            <a href="Алгоритм.drawio.png">🖼️ Открыть файл со схемой алгоритма</a>
+        </p>
+    </div>
 
-        <div style="background: #eef2ff; padding: 15px; border-radius: 8px; margin-top: 15px; font-size: 0.95rem;">
-            <strong>Как это работает:</strong><br>
-            Нейросеть работает по принципу многослойного взвешенного голосования: она принимает входные данные, умножает их на веса (коэффициенты важности), суммирует и пропускает через функцию активации (сигмоиду), которая «изгибает» линейную зависимость, позволяя модели находить сложные нелинейные закономерности. 
-            <br><br>
-            В отличие от линейной регрессии, которая строит только прямую линию, и дерева решений, которое делит данные на прямоугольные зоны жесткими правилами, нейросеть создает плавные границы решений. Обучение происходит методом обратного распространения ошибки.
+    <!-- Блок 8: Итоги -->
+    <div class="card">
+        <span class="date-badge">01.04.2026</span>
+        <div class="download-list">
+            <a href="АлексейСидоров.drawio.png">🏥 Данные пациента</a>
+            <a href="Сравнительная таблица.csv">📊 Сравнительная таблица (Список, Массив, Словарь)</a>
         </div>
+        <p style="margin-top: 15px; font-weight: bold; color: green;">
+            ✅ Итог: лучшая структура данных - словарь
+        </p>
     </div>
 
 </div>
 
-    <a href="Алгоритм.drawio.png"> файл со схемой </a>
-<p>
-    01.04/2026
-     <a href="АлексейСидоров.drawio.png"> данные пациента </a>
-     <a href="Сравнительная таблица.csv"> сравнительная таблица списка, массива и словаря </a>
-    Итог: лучшая структура данных - словарь
-</p>
 </body>
 </html>
