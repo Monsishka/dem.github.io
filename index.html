@@ -47,14 +47,11 @@
             overflow-x: hidden;
         }
 
-        /* ===== ANIMATED BACKGROUND ===== */
         body::before {
             content: '';
             position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
             z-index: -2;
             background:
                 radial-gradient(ellipse 80% 60% at 10% 20%, rgba(99, 102, 241, 0.08) 0%, transparent 60%),
@@ -74,7 +71,6 @@
             pointer-events: none;
         }
 
-        /* ===== FLOATING ORBS ===== */
         .orb {
             position: fixed;
             border-radius: 50%;
@@ -115,22 +111,11 @@
             75% { transform: translate(60px, 40px) scale(1.05); }
         }
 
-        /* ===== SCROLLBAR ===== */
-        ::-webkit-scrollbar {
-            width: 8px;
-        }
-        ::-webkit-scrollbar-track {
-            background: var(--bg);
-        }
-        ::-webkit-scrollbar-thumb {
-            background: var(--card-border);
-            border-radius: 4px;
-        }
-        ::-webkit-scrollbar-thumb:hover {
-            background: var(--accent);
-        }
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: var(--bg); }
+        ::-webkit-scrollbar-thumb { background: var(--card-border); border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: var(--accent); }
 
-        /* ===== CONTAINER ===== */
         .container {
             max-width: 900px;
             margin: 0 auto;
@@ -147,11 +132,9 @@
         header::after {
             content: '';
             position: absolute;
-            bottom: 0;
-            left: 50%;
+            bottom: 0; left: 50%;
             transform: translateX(-50%);
-            width: 120px;
-            height: 2px;
+            width: 120px; height: 2px;
             background: linear-gradient(90deg, transparent, var(--accent), var(--accent-secondary), transparent);
             border-radius: 2px;
         }
@@ -214,29 +197,21 @@
 
         .btn::before {
             content: '';
-            position: absolute;
-            inset: 0;
+            position: absolute; inset: 0;
             background: linear-gradient(135deg, var(--accent-light), var(--accent-secondary));
             opacity: 0;
             transition: opacity 0.3s ease;
         }
 
-        .btn:hover::before {
-            opacity: 1;
-        }
+        .btn:hover::before { opacity: 1; }
 
         .btn span {
-            position: relative;
-            z-index: 1;
+            position: relative; z-index: 1;
         }
 
         .btn:hover {
             transform: translateY(-3px);
             box-shadow: 0 8px 30px var(--accent-glow);
-        }
-
-        .btn:active {
-            transform: translateY(-1px);
         }
 
         /* ===== MAIN ===== */
@@ -261,9 +236,7 @@
         .card::before {
             content: '';
             position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
+            top: 0; left: 0; right: 0;
             height: 1px;
             background: linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent);
         }
@@ -293,7 +266,6 @@
             border: 1px solid rgba(99, 102, 241, 0.2);
         }
 
-        /* ===== HEADINGS ===== */
         h2 {
             font-size: 1.5rem;
             font-weight: 800;
@@ -315,13 +287,11 @@
         h3::before {
             content: '';
             display: inline-block;
-            width: 4px;
-            height: 18px;
+            width: 4px; height: 18px;
             background: linear-gradient(180deg, var(--accent), var(--accent-secondary));
             border-radius: 2px;
         }
 
-        /* ===== LISTS ===== */
         ul {
             padding-left: 0;
             list-style: none;
@@ -337,18 +307,14 @@
 
         li::before {
             content: '◆';
-            position: absolute;
-            left: 0;
+            position: absolute; left: 0;
             color: var(--accent);
             font-size: 0.6rem;
             top: 0.75rem;
         }
 
-        li:hover {
-            color: var(--text);
-        }
+        li:hover { color: var(--text); }
 
-        /* ===== HIGHLIGHT ===== */
         .highlight {
             background: linear-gradient(135deg, rgba(245, 158, 11, 0.2), rgba(244, 63, 94, 0.15));
             color: var(--gold);
@@ -358,7 +324,6 @@
             border: 1px solid rgba(245, 158, 11, 0.2);
         }
 
-        /* ===== FAQ BLOCK ===== */
         .faq-block {
             background: linear-gradient(135deg, rgba(99, 102, 241, 0.06), rgba(6, 182, 212, 0.04));
             border: 1px solid rgba(99, 102, 241, 0.15);
@@ -388,7 +353,6 @@
             border-radius: 0 8px 8px 0;
         }
 
-        /* ===== CODE BLOCKS ===== */
         pre {
             background: linear-gradient(135deg, #0f172a, #1e1b4b);
             color: #e2e8f0;
@@ -406,14 +370,11 @@
         pre::before {
             content: '';
             position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
+            top: 0; left: 0; right: 0;
             height: 2px;
             background: linear-gradient(90deg, var(--accent), var(--accent-secondary), var(--rose));
         }
 
-        /* ===== LINK CARDS ===== */
         .links-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
@@ -440,16 +401,13 @@
 
         .link-card::before {
             content: '';
-            position: absolute;
-            inset: 0;
+            position: absolute; inset: 0;
             background: linear-gradient(135deg, rgba(99, 102, 241, 0.1), rgba(6, 182, 212, 0.05));
             opacity: 0;
             transition: opacity 0.3s ease;
         }
 
-        .link-card:hover::before {
-            opacity: 1;
-        }
+        .link-card:hover::before { opacity: 1; }
 
         .link-card:hover {
             border-color: var(--accent);
@@ -458,11 +416,9 @@
         }
 
         .link-card span {
-            position: relative;
-            z-index: 1;
+            position: relative; z-index: 1;
         }
 
-        /* ===== SECTION DIVIDER ===== */
         .section-divider {
             text-align: center;
             margin: 3rem 0 2rem;
@@ -485,7 +441,6 @@
             background: linear-gradient(90deg, transparent, var(--card-border), transparent);
         }
 
-        /* ===== FOOTER ===== */
         footer {
             text-align: center;
             margin-top: 4rem;
@@ -499,106 +454,17 @@
         footer::before {
             content: '';
             position: absolute;
-            top: -1px;
-            left: 50%;
+            top: -1px; left: 50%;
             transform: translateX(-50%);
-            width: 80px;
-            height: 2px;
+            width: 80px; height: 2px;
             background: linear-gradient(90deg, transparent, var(--accent), transparent);
         }
 
-        /* ===== BOTTOM LINKS ===== */
-        .bottom-links {
-            text-align: center;
-            padding: 2rem 0 3rem;
-        }
-
-        .bottom-links a {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            padding: 0.8rem 1.6rem;
-            margin: 0.4rem;
-            background: linear-gradient(135deg, rgba(16, 185, 129, 0.15), rgba(6, 182, 212, 0.1));
-            color: var(--emerald);
-            text-decoration: none;
-            border-radius: 50px;
-            font-weight: 600;
-            font-size: 0.9rem;
-            border: 1px solid rgba(16, 185, 129, 0.2);
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-
-        .bottom-links a:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 8px 25px rgba(16, 185, 129, 0.2);
-            border-color: var(--emerald);
-        }
-
-        /* ===== ANIMATIONS ===== */
-        .card {
-            animation: fadeInUp 0.6s ease both;
-        }
-
-        .card:nth-child(1) { animation-delay: 0.1s; }
-        .card:nth-child(2) { animation-delay: 0.2s; }
-        .card:nth-child(3) { animation-delay: 0.3s; }
-        .card:nth-child(4) { animation-delay: 0.4s; }
-        .card:nth-child(5) { animation-delay: 0.5s; }
-        .card:nth-child(6) { animation-delay: 0.6s; }
-
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        /* ===== GLOW LINE ON CARD HOVER ===== */
-        .card::after {
-            content: '';
-            position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: radial-gradient(circle at var(--mouse-x, 50%) var(--mouse-y, 50%), rgba(99, 102, 241, 0.06), transparent 50%);
-            opacity: 0;
-            transition: opacity 0.3s ease;
-            pointer-events: none;
-        }
-
-        .card:hover::after {
-            opacity: 1;
-        }
-
-        /* ===== RESPONSIVE ===== */
-        @media (max-width: 768px) {
-            h1 { font-size: 2.2rem; }
-            .card { padding: 1.5rem; }
-            .downloads { flex-direction: column; align-items: stretch; }
-            .btn { justify-content: center; }
-            .links-grid { grid-template-columns: 1fr; }
-            header { padding: 3rem 0 2rem; }
-        }
-
-        @media (max-width: 480px) {
-            h1 { font-size: 1.8rem; }
-            h2 { font-size: 1.25rem; }
-            .container { padding: 0 1rem; }
-        }
-
-        /* ===== SELECTION ===== */
         ::selection {
             background: rgba(99, 102, 241, 0.3);
             color: #fff;
         }
 
-        /* ===== TOOLTIP EFFECT ON LINKS ===== */
         .link-card::after {
             content: '→';
             margin-left: auto;
@@ -614,45 +480,6 @@
             transform: translateX(0);
         }
 
-        /* ===== TAG / CATEGORY STYLE ===== */
-        .category-tag {
-            display: inline-block;
-            padding: 0.2rem 0.6rem;
-            background: rgba(99, 102, 241, 0.1);
-            color: var(--accent-light);
-            border-radius: 6px;
-            font-size: 0.75rem;
-            font-weight: 600;
-            margin-bottom: 0.75rem;
-            letter-spacing: 0.05em;
-            text-transform: uppercase;
-        }
-
-        /* ===== MATH EQUATION HIGHLIGHT ===== */
-        .math-line {
-            display: block;
-            padding: 0.25rem 0;
-            font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
-            font-size: 0.95rem;
-            color: var(--accent-light);
-        }
-
-        .math-line .op {
-            color: var(--rose);
-            margin: 0 0.25rem;
-        }
-
-        .math-line .eq {
-            color: var(--emerald);
-            margin: 0 0.25rem;
-        }
-
-        .math-line .result {
-            color: var(--gold);
-            font-weight: 700;
-        }
-
-        /* ===== PROGRESS BAR STYLE FOR PERCENTAGES ===== */
         .stat-bar {
             display: flex;
             align-items: center;
@@ -693,7 +520,6 @@
             color: var(--text);
         }
 
-        /* ===== QUOTE STYLING ===== */
         .quote-wrapper {
             position: relative;
         }
@@ -701,12 +527,56 @@
         .quote-wrapper::before {
             content: '"';
             position: absolute;
-            top: -10px;
-            left: -5px;
+            top: -10px; left: -5px;
             font-size: 3rem;
             color: var(--accent);
             opacity: 0.3;
             font-family: Georgia, serif;
+        }
+
+        .card {
+            animation: fadeInUp 0.6s ease both;
+        }
+
+        .card:nth-child(1) { animation-delay: 0.1s; }
+        .card:nth-child(2) { animation-delay: 0.2s; }
+        .card:nth-child(3) { animation-delay: 0.3s; }
+        .card:nth-child(4) { animation-delay: 0.4s; }
+        .card:nth-child(5) { animation-delay: 0.5s; }
+        .card:nth-child(6) { animation-delay: 0.6s; }
+        .card:nth-child(7) { animation-delay: 0.7s; }
+
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .card::after {
+            content: '';
+            position: absolute;
+            top: -50%; left: -50%;
+            width: 200%; height: 200%;
+            background: radial-gradient(circle at var(--mouse-x, 50%) var(--mouse-y, 50%), rgba(99, 102, 241, 0.06), transparent 50%);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            pointer-events: none;
+        }
+
+        .card:hover::after { opacity: 1; }
+
+        @media (max-width: 768px) {
+            h1 { font-size: 2.2rem; }
+            .card { padding: 1.5rem; }
+            .downloads { flex-direction: column; align-items: stretch; }
+            .btn { justify-content: center; }
+            .links-grid { grid-template-columns: 1fr; }
+            header { padding: 3rem 0 2rem; }
+        }
+
+        @media (max-width: 480px) {
+            h1 { font-size: 1.8rem; }
+            h2 { font-size: 1.25rem; }
+            .container { padding: 0 1rem; }
         }
     </style>
 </head>
@@ -731,33 +601,26 @@
             <!-- 16.02.2026 -->
             <article class="card">
                 <span class="date-badge">📅 16.02.2026</span>
-                
                 <h2>🔮 Топ-3 предсказаний</h2>
                 <ul>
                     <li>
                         <div class="stat-bar">
                             <span class="stat-bar-label">running shoe</span>
-                            <div class="stat-bar-track">
-                                <div class="stat-bar-fill high" style="width: 99.45%"></div>
-                            </div>
+                            <div class="stat-bar-track"><div class="stat-bar-fill high" style="width: 99.45%"></div></div>
                             <span class="stat-bar-value">99.45%</span>
                         </div>
                     </li>
                     <li>
                         <div class="stat-bar">
                             <span class="stat-bar-label">shoe store</span>
-                            <div class="stat-bar-track">
-                                <div class="stat-bar-fill" style="width: 5%"></div>
-                            </div>
+                            <div class="stat-bar-track"><div class="stat-bar-fill" style="width: 5%"></div></div>
                             <span class="stat-bar-value">0.27%</span>
                         </div>
                     </li>
                     <li>
                         <div class="stat-bar">
                             <span class="stat-bar-label">clogs</span>
-                            <div class="stat-bar-track">
-                                <div class="stat-bar-fill" style="width: 3%"></div>
-                            </div>
+                            <div class="stat-bar-track"><div class="stat-bar-fill" style="width: 3%"></div></div>
                             <span class="stat-bar-value">0.15%</span>
                         </div>
                     </li>
@@ -766,9 +629,7 @@
                 <div class="faq-block">
                     <h2>💬 Работа с FAQ</h2>
                     <p><strong>Вопрос пользователя:</strong></p>
-                    <div class="quote-wrapper">
-                        <blockquote>Как можно оплатить свой заказ?</blockquote>
-                    </div>
+                    <div class="quote-wrapper"><blockquote>Как можно оплатить свой заказ?</blockquote></div>
                     <p style="margin-top: 0.75rem;"><strong>Найден FAQ-вопрос:</strong> Как оплатить заказ? <em>(similarity = <span class="highlight">0.868</span>)</em></p>
                     <p style="margin-top: 0.5rem;"><strong>Ответ бот-FAQ:</strong> Оплатить можно по номеру телефона, указанного в описании заказа</p>
                 </div>
@@ -844,12 +705,11 @@
             <article class="card">
                 <span class="date-badge">📅 11.04.2026</span>
                 <h2>🏥 База данных стоматологии</h2>
-                
                 <h3>Стоматология</h3>
                 <div class="links-grid">
                     <a href="БАЗА СТОМАТ.drawio.png" class="link-card"><span>🏥 Общая схема БД стоматологии</span></a>
                 </div>
-                    
+
                 <h3>Основные индексы</h3>
                 <div class="links-grid">
                     <a href="1 из 3.drawio.png" class="link-card"><span>👨‍⚕️ Индекс врача</span></a>
@@ -864,21 +724,25 @@
                     <a href="ВТОРИЧ 3 из 3.drawio.png" class="link-card"><span>💉 Вторичный индекс операции</span></a>
                 </div>
             </article>
+
+            <!-- 02.05.2026 -->
+            <article class="card">
+                <span class="date-badge">📅 02.05.2026</span>
+                <h2>📊 Электронные таблицы</h2>
+                <p style="color: var(--text-secondary); margin-bottom: 1rem;">Файлы с расчётами и данными в формате Excel:</p>
+                <div class="links-grid">
+                    <a href="Электронные таблицы.xlsx" class="link-card"><span>📋 Электронные таблицы</span></a>
+                    <a href="Степени целых чисел.xlsx" class="link-card"><span>🔢 Степени целых чисел</span></a>
+                </div>
+            </article>
         </main>
 
-        <!-- Bottom links -->
-        <div class="bottom-links">
-            <a href="Электронные таблицы.xlsx">📊 Таблицы</a>
-            <a href="Степени целых чисел.xlsx">🔢 Степени чисел</a>
-        </div>
-
         <footer>
-            <p>📅 Обновлено: 11.04.2026 • Форматирование выполнено автоматически</p>
+            <p>📅 Обновлено: 02.05.2026 • Форматирование выполнено автоматически</p>
         </footer>
     </div>
 
     <script>
-        // Mouse tracking for card glow effect
         document.querySelectorAll('.card').forEach(card => {
             card.addEventListener('mousemove', (e) => {
                 const rect = card.getBoundingClientRect();
@@ -889,16 +753,13 @@
             });
         });
 
-        // Animate stat bars on scroll
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
                     entry.target.querySelectorAll('.stat-bar-fill').forEach(bar => {
                         const width = bar.style.width;
                         bar.style.width = '0%';
-                        setTimeout(() => {
-                            bar.style.width = width;
-                        }, 100);
+                        setTimeout(() => { bar.style.width = width; }, 100);
                     });
                 }
             });
