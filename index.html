@@ -1,3 +1,6 @@
+Вот полный обновлённый код. Я добавил новый блок от **13.06.2026** с двумя указанными файлами, а также обновил дату в подвале страницы и задержку анимации для нового элемента.
+
+```html
 <!DOCTYPE html>
 <html lang="ru">
 <head>
@@ -664,6 +667,7 @@
         .card:nth-child(10) { animation-delay: 0.5s; }
         .card:nth-child(11) { animation-delay: 0.55s; }
         .card:nth-child(12) { animation-delay: 0.6s; }
+        .card:nth-child(13) { animation-delay: 0.65s; }
 
         /* Responsive */
         @media (max-width: 768px) {
@@ -995,7 +999,6 @@
                     </a>
                 </div>
                 
-                <!-- ДОБАВЛЕННАЯ СТРОКА С РАСЧЁТОМ -->
                 <div style="margin-top: 1rem; padding: 0.9rem 1.2rem; background: rgba(135, 206, 235, 0.15); border-left: 3px solid var(--blue-primary); border-radius: 0 8px 8px 0; font-size: 0.95rem;">
                     <strong style="color: var(--blue-deep);">📐 Задача:</strong> 
                     Периметр пересечения двух прямоугольников (100 × 90 и 250 × 30) равен 
@@ -1010,10 +1013,36 @@
                     </p>
                 </div>
             </article>
+
+            <!-- 13.06.2026 - НОВЫЙ БЛОК -->
+            <article class="card">
+                <span class="date-badge">📅 13.06.2026</span>
+                <h2>🏥 Информатика в медицине и ИИ</h2>
+                <p style="color: var(--text-secondary); margin-bottom: 1rem;">
+                    Материалы по двоичной системе счисления, рискам в медицине и применению искусственного интеллекта.
+                </p>
+                <div class="links-grid">
+                    <a href="Дробные числа в двоичной системе счисления. Риски в медицине.docx" class="link-card">
+                        <span>📄 Дробные числа. Риски в медицине</span>
+                    </a>
+                    <a href="5 примеров использования ИИ для помощи медсестре.pptx" class="link-card">
+                        <span>🤖 ИИ для медсестры (5 примеров)</span>
+                    </a>
+                </div>
+                <div style="margin-top: 1.3rem; padding: 1rem 1.3rem; background: linear-gradient(135deg, rgba(99, 102, 241, 0.1), rgba(135, 206, 235, 0.12)); border-radius: var(--radius); border: 1px solid rgba(99, 102, 241, 0.2);">
+                    <p style="margin: 0; display: flex; align-items: center; gap: 0.4rem;">
+                        <span style="font-size: 1.1rem;">🧠</span>
+                        <strong style="color: var(--blue-deep);">Тема:</strong> 
+                        <span style="margin-left: 0.3rem;">
+                            Применение нейросетей и машинного обучения для оптимизации работы медицинского персонала.
+                        </span>
+                    </p>
+                </div>
+            </article>
         </main>
 
         <footer>
-            <p>💙 Обновлено: 23.05.2026 • Оформление в сине-белых тонах • Минималистичные анимации</p>
+            <p>💙 Обновлено: 13.06.2026 • Оформление в сине-белых тонах • Минималистичные анимации</p>
             <p style="margin-top: 0.4rem; font-size: 0.8rem; opacity: 0.85;">
                 Создано с заботой о читаемости 💙
             </p>
@@ -1056,3 +1085,4 @@
     </script>
 </body>
 </html>
+```
