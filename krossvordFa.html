@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Кроссворд по фармакологии</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 1400px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+        h1 {
+            text-align: center;
+            color: #2c3e50;
+        }
+        .container {
+            display: flex;
+            gap: 30px;
+            flex-wrap: wrap;
+        }
+        .crossword {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(12, 40px);
+            gap: 2px;
+            margin: 20px 0;
+        }
+        .cell {
+            width: 40px;
+            height: 40px;
+            position: relative;
+        }
+        .cell input {
+            width: 100%;
+            height: 100%;
+            text-align: center;
+            font-size: 18px;
+            font-weight: bold;
+            border: 2px solid #34495e;
+            text-transform: uppercase;
+        }
+        .cell.black {
+            background-color: #2c3e50;
+        }
+        .cell .number {
+            position: absolute;
+            top: 2px;
+            left: 2px;
+            font-size: 10px;
+            color: #e74c3c;
+            font-weight: bold;
+            z-index: 1;
+        }
+        .clues {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            flex: 1;
+            min-width: 300px;
+        }
+        .clues h3 {
+            color: #2c3e50;
+            margin-top: 0;
+        }
+        .clues ul {
+            list-style: none;
+            padding: 0;
+        }
+        .clues li {
+            padding: 8px;
+            margin: 5px 0;
+            background: #ecf0f1;
+            border-radius: 5px;
+        }
+        .button {
+            background: #3498db;
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            font-size: 16px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin: 20px 0;
+            transition: background 0.3s;
+        }
+        .button:hover {
+            background: #2980b9;
+        }
+    </style>
+</head>
+<body>
+    <h1>Кроссворд по фармакологии</h1>
+
+    <div class="container">
+        <div class="crossword">
+            <div class="grid" id="crosswordGrid">
+                <!-- Строка 0 -->
+                <div class="cell black"></div><div class="cell black"></div><div class="cell black"></div><div class="cell black"></div><div class="cell black"></div><div class="cell black"></div><div class="cell black"></div><div class="cell black"></div><div class="cell black"></div><div class="cell black"></div><div class="cell black"></div><div class="cell black"></div>
+                <!-- Строка 1 -->
+                <div class="cell black"></div><div class="cell black"></div><div class="cell black"></div><div class="cell black"></div><div class="cell black"></div><div class="cell black"></div><div class="cell black"></div><div class="cell black"></div><div class="cell black"></div><div class="cell black"></div><div class="cell black"></div><div class="cell black"></div>
+                <!-- Строка 2 -->
+                <div class="cell black"></div><div class="cell black"></div><div class="cell black"></div><div class="cell black"></div><div class="cell black"></div><div class="cell black"></div><div class="cell black"></div><div class="cell black"></div><div class="cell black"></div><div class="cell black"></div><div class="cell black"></div><div class="cell black"></div>
+                <!-- Строка 3 -->
+                <div class="cell black"></div><div class="cell black"></div><div class="cell black"></div><div class="cell black"></div><div class="cell black"></div><div class="cell black"></div><div class="cell black"></div><div class="cell black"></div><div class="cell black"></div><div class="cell black"></div><div class="cell black"></div><div class="cell black"></div>
+                <!-- Строка 4 -->
+                <div class="cell black"></div><div class="cell black"></div><div class="cell"><span class="number">2</span><input type="text" maxlength="1" data-row="4" data-col="2"></div><div class="cell"><input type="text" maxlength="1" data-row="4" data-col="3"></div><div class="cell"><span class="number">1</span><input type="text" maxlength="1" data-row="4" data-col="4"></div><div class="cell"><input type="text" maxlength="1" data-row="4" data-col="5"></div><div class="cell"><input type="text" maxlength="1" data-row="4" data-col="6"></div><div class="cell"><input type="text" maxlength="1" data-row="4" data-col="7"></div><div class="cell"><input type="text" maxlength="1" data-row="4" data-col="8"></div><div class="cell"><input type="text" maxlength="1" data-row="4" data-col="9"></div><div class="cell"><span class="number">3</span><input type="text" maxlength="1" data-row="4" data-col="10"></div><div class="cell"><input type="text" maxlength="1" data-row="4" data-col="11"></div>
+                <!-- Строка 5 -->
+                <div class="cell black"></div><div class="cell black"></div><div class="cell black"></div><div class="cell black"></div><div class="cell"><input type="text" maxlength="1" data-row="5" data-col="4"></div><div class="cell black"></div><div class="cell black"></div><div class="cell black"></div><div class="cell black"></div><div class="cell black"></div><div class="cell"><input type="text" maxlength="1" data-row="5" data-col="10"></div><div class="cell black"></div>
+                <!-- Строка 6 -->
+                <div class="cell black"></div><div class="cell black"></div><div class="cell black"></div><div class="cell black"></div><div class="cell"><input type="text" maxlength="1" data-row="6" data-col="4"></div><div class="cell black"></div><div class="cell black"></div><div class="cell black"></div><div class="cell black"></div><div class="cell black"></div><div class="cell"><input type="text" maxlength="1" data-row="6" data-col="10"></div><div class="cell black"></div>
+                <!-- Строка 7 -->
+                <div class="cell black"></div><div class="cell black"></div><div class="cell black"></div><div class="cell black"></div><div class="cell"><input type="text" maxlength="1" data-row="7" data-col="4"></div><div class="cell black"></div><div class="cell black"></div><div class="cell black"></div><div class="cell black"></div><div class="cell black"></div><div class="cell"><input type="text" maxlength="1" data-row="7" data-col="10"></div><div class="cell black"></div>
+                <!-- Строка 8 -->
+                <div class="cell black"></div><div class="cell black"></div><div class="cell"><input type="text" maxlength="1" data-row="8" data-col="2"></div><div class="cell"><span class="number">4</span><input type="text" maxlength="1" data-row="8" data-col="3"></div><div class="cell"><input type="text" maxlength="1" data-row="8" data-col="4"></div><div class="cell"><input type="text" maxlength="1" data-row="8" data-col="5"></div><div class="cell"><input type="text" maxlength="1" data-row="8" data-col="6"></div><div class="cell"><input type="text" maxlength="1" data-row="8" data-col="7"></div><div class="cell"><input type="text" maxlength="1" data-row="8" data-col="8"></div><div class="cell black"></div><div class="cell"><input type="text" maxlength="1" data-row="8" data-col="10"></div><div class="cell black"></div>
+                <!-- Строка 9 -->
+                <div class="cell black"></div><div class="cell black"></div><div class="cell black"></div><div class="cell black"></div><div class="cell"><input type="text" maxlength="1" data-row="9" data-col="4"></div><div class="cell black"></div><div class="cell black"></div><div class="cell black"></div><div class="cell black"></div><div class="cell black"></div><div class="cell"><input type="text" maxlength="1" data-row="9" data-col="10"></div><div class="cell black"></div>
+                <!-- Строка 10 -->
+                <div class="cell black"></div><div class="cell black"></div><div class="cell black"></div><div class="cell black"></div><div class="cell"><input type="text" maxlength="1" data-row="10" data-col="4"></div><div class="cell black"></div><div class="cell black"></div><div class="cell black"></div><div class="cell black"></div><div class="cell black"></div><div class="cell"><input type="text" maxlength="1" data-row="10" data-col="10"></div><div class="cell black"></div>
+                <!-- Строка 11 -->
+                <div class="cell black"></div><div class="cell"><span class="number">5</span><input type="text" maxlength="1" data-row="11" data-col="1"></div><div class="cell"><input type="text" maxlength="1" data-row="11" data-col="2"></div><div class="cell"><input type="text" maxlength="1" data-row="11" data-col="3"></div><div class="cell"><input type="text" maxlength="1" data-row="11" data-col="4"></div><div class="cell black"></div><div class="cell black"></div><div class="cell black"></div><div class="cell black"></div><div class="cell black"></div><div class="cell"><input type="text" maxlength="1" data-row="11" data-col="10"></div><div class="cell black"></div>
+            </div>
+
+            <button class="button" onclick="showAnswers()">Показать ответы</button>
+        </div>
+
+        <div class="clues">
+            <h3>По горизонтали:</h3>
+            <ul>
+                <li><strong>2.</strong> Противомикробный препарат (10 букв)</li>
+                <li><strong>4.</strong> Врачебное назначение (6 букв)</li>
+                <li><strong>5.</strong> Количество лекарства (4 буквы)</li>
+            </ul>
+
+            <h3>По вертикали:</h3>
+            <ul>
+                <li><strong>1.</strong> Лекарственная форма (8 букв)</li>
+                <li><strong>3.</strong> Способ введения лекарства (8 букв)</li>
+            </ul>
+        </div>
+    </div>
+
+    <script>
+        const answers = {
+            '4-2': 'А', '4-3': 'Н', '4-4': 'Т', '4-5': 'И', '4-6': 'Б', '4-7': 'И', '4-8': 'О', '4-9': 'Т', '4-10': 'И', '4-11': 'К',
+            '5-4': 'А', '6-4': 'Б', '7-4': 'Л', '8-4': 'Е', '9-4': 'Т', '10-4': 'К', '11-4': 'А',
+            '5-10': 'Н', '6-10': 'Ъ', '7-10': 'Е', '8-10': 'К', '9-10': 'Ц', '10-10': 'И', '11-10': 'Я',
+            '8-3': 'Р', '8-5': 'Ц', '8-6': 'Е', '8-7': 'П', '8-8': 'Т',
+            '11-1': 'Д', '11-2': 'О', '11-3': 'З'
+        };
+
+        function showAnswers() {
+            const inputs = document.querySelectorAll('input[type="text"]');
+            inputs.forEach(input => {
+                const row = input.dataset.row;
+                const col = input.dataset.col;
+                const key = `${row}-${col}`;
+                if (answers[key]) {
+                    input.value = answers[key];
+                }
+            });
+        }
+    </script>
+</body>
+</html>
